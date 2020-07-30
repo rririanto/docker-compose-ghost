@@ -12,6 +12,14 @@ services:
       database__connection__user: root
       database__connection__password: "password"
       database__connection__database: ghost
+      mail__transport: "SMTP or you named it"
+      mail__from: "Your Brand <noreply@yourdomain.com>"
+      mail__options__service: "SMTP or you named it" 
+      mail__options__host: "yoursmtp"
+      mail__options__port: 465
+      mail__options__secureConnection: "true"
+      mail__options__auth__user: "emailuser"
+      mail__options__auth__pass: "emailpassword"
       VIRTUAL_HOST: yourdomain.com
       VIRTUAL_PORT: 80
       LETSENCRYPT_HOST: yourdomain.com
