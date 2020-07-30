@@ -1,0 +1,33 @@
+version: '3'
+services:
+  ghost:
+    image: ghost:latest
+    restart: always
+    depends_on:
+      - db
+    environment:
+      url: https://yourdomain.com
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: "password"
+      database__connection__database: ghost
+      VIRTUAL_HOST: yourdomain.com
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST: yourdomain.com
+      LETSENCRYPT_EMAIL: hello.yourdomain@gmail.com 
+    volumes:
+      - /opt/ghost_content:/var/lib/ghost/content
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+    volumes:
+      - /opt/ghost_mysql:/var/lib/mysql
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
